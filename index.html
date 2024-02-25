@@ -1,0 +1,456 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chill & Vibe ~ Where Every Moment Feels Right!</title>
+    <style>
+        /* Global CSS styles */
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background-color: #f9f9f9; /* Light gray background */
+            color: #333; /* Dark gray text color */
+        }
+        header {
+            background-color: #66cc99; /* Light green header background */
+            color: #fff;
+            padding: 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .logo img {
+            width: 100px; /* Adjust as needed */
+        }
+        .title h1, .title h2 {
+            margin: 0;
+        }
+        nav {
+            display: flex;
+            justify-content: center;
+            background-color: #55aabb; /* Light blue navigation */
+            padding: 10px;
+        }
+        nav a {
+            color: #fff;
+            text-decoration: none;
+            padding: 10px;
+            margin: 0 10px;
+            text-transform: uppercase;
+            font-weight: bold;
+        }
+        nav a:hover {
+            background-color: #77bbdd; /* Light blue on hover */
+        }
+        a {
+            color: #fff; /* White link color */
+            text-decoration: none;
+            padding: 10px;
+            margin: 0 10px;
+            text-transform: uppercase;
+            font-weight: bold;
+        }
+        a:hover {
+            background-color: #77bbdd; /* Light blue hover color */
+        }
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        .content {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            align-items: flex-start;
+            margin-top: 20px;
+        }
+        .featured-item {
+            background-color: #fff;
+            border-radius: 5px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+            margin: 10px;
+            padding: 20px;
+            width: calc(33.33% - 20px);
+        }
+        .featured-item img {
+            max-width: 100%;
+            border-radius: 5px;
+            margin-bottom: 10px;
+        }
+        .testimonials {
+            width: 100%;
+            margin-top: 40px;
+            text-align: center;
+        }
+        .testimonial {
+            display: inline-block;
+            background-color: #fff;
+            border-radius: 5px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+            margin: 10px;
+            padding: 20px;
+            width: calc(33.33% - 20px);
+        }
+        .testimonial p {
+            font-style: italic;
+        }
+
+        footer {
+            background-color: #66cc99; /* Light green footer background */
+            color: #fff;
+            text-align: center;
+            padding: 20px; /* Increased footer padding */
+            position: relative;
+            margin-top: 40px; /* Added margin-top to create space between footer and content */
+            font-size: 14px;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 20px;
+            z-index: 1;    
+        }
+        footer div {
+            flex: 1;
+            min-width: 200px;
+            max-width: 300px;
+        }
+        footer h4 {
+            font-size: 16px;
+            margin-bottom: 10px;
+        }
+        footer ul {
+            list-style-type: none;
+            padding: 0;
+            margin: 0;
+            text-align: left;
+            font-size: 10.60px;
+        }
+        footer ul li {
+            margin-bottom: 5px;
+        }
+        /* Horizontal line at top and bottom of footer */
+        footer:before,
+        footer:after {
+            content: '';
+            display: block;
+            height: 1px;
+            width: 90%;
+            margin: 0 auto;
+            background-color: #fff; /* White horizontal lines */
+            margin-top: 10px;
+            margin-bottom: 10px;
+        }
+        .copyright {
+            margin-top: 20px;
+            font-size: 12px;
+            grid-column: 1 / -1;
+        }
+
+        /* Add this CSS rule */
+        .search-bar input[type="text"] {
+            background-color: #ffcccc; /* Specify your desired background color */
+            border: 1px solid #cccccc; /* Specify your desired border color */
+            padding: 8px; /* Adjust padding as needed */
+        }
+        .search-bar button {
+            background-color: #66cc99; /* Background color of the button */
+            border: none;
+            color: white;
+            padding: 10px 20px;
+            cursor: pointer;
+            transition: background-color 0.3s ease; /* Smooth transition for background color */
+        }
+
+        /* CSS for the animation effect */
+        .search-bar button:hover {
+            animation: bounce 0.5s ease; /* Animation name, duration, and timing function */
+        }
+
+        /* Keyframes for the animation */
+        @keyframes bounce {
+            0%, 100% { transform: translateY(0); } /* Start and end position */
+            50% { transform: translateY(-10px); } /* Midway position */
+        }
+        /* Style for search results */
+        .search-results {
+            margin-top: 20px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            padding: 10px;
+            background-color: #fff;
+        }
+
+        .search-results a {
+            display: block;
+            color: #333;
+            text-decoration: none;
+            padding: 5px 0;
+            border-bottom: 1px solid #ccc;
+        }
+
+        .search-results a:last-child {
+            border-bottom: none;
+        }
+        /* CSS for Order Now button */
+        .cta {
+            margin-right: 20px; /* Adjust margin as needed */
+        }
+
+        .cta .btn {
+            background-color: #66cc99; /* Light green button background */
+            color: #fff; /* White button text color */
+            padding: 10px 20px; /* Adjust padding as needed */
+            border: none;
+            border-radius: 5px; /* Rounded corners */
+            text-decoration: none;
+            font-weight: bold;
+            transition: background-color 0.3s ease; /* Smooth transition for background color */
+        }
+
+        .cta .btn:hover {
+            background-color: #55aabb; /* Light blue button background on hover */
+        }
+
+    </style>
+    <script>
+                    // JavaScript code for "Order Now" button
+            document.querySelector('.cta .btn').addEventListener('click', function() {
+                // Replace '#' with the URL where the order page is located
+                window.location.href = '#';
+            });
+
+</script>
+</head>
+<body>
+    <header>
+        <div class="logo">
+            <img src="logo.png" alt="Chill & Vibe Logo">
+        </div>
+        <div class="title">
+            <h1 style="font-size: 24px; margin-bottom: 5px;">Chill & Vibe</h1>
+            <h2 style="font-size: 18px;">Where Every Moment Feels Right!</h2>
+        </div>
+        
+        <div class="search-bar">
+            <input id="searchInput" type="text" placeholder="Search...">
+            <button id="searchButton" type="button">Search</button>
+        </div>
+        <div class="cta">
+            <a href="#" class="btn">ORDER NOW</a>
+        </div>
+    </header>
+    
+    <nav>
+        <a href="#">Home</a>
+        <a href="menu3.html">Menu</a>
+        <a href="#">About Us</a>
+        <a href="#">Contact Us</a>
+    </nav>
+    <div class="container">
+        <h2>Featured Items</h2>
+        <div class="content">
+            <div class="featured-item">
+                <img src="food1.jpg" alt="Food Image">
+                <h3>Delicious Dishes</h3>
+                <p>Explore our mouthwatering dishes crafted by our talented chefs.</p>
+            </div>
+            <div class="featured-item">
+                <img src="food2.jpg" alt="Food Image">
+                <h3>Relaxing Ambience</h3>
+                <p>Enjoy your meal in a cozy and inviting atmosphere.</p>
+            </div>
+            <div class="featured-item">
+                <img src="food3.jpg" alt="Food Image">
+                <h3>Exceptional Service</h3>
+                <p>Our friendly staff is dedicated to providing you with the best dining experience.</p>
+            </div>
+        </div>
+
+        <div class="testimonials">
+            <h2>Customer Testimonials</h2>
+            <div class="testimonial">
+                <p>"Absolutely amazing food! I would highly recommend this restaurant to anyone looking for a great dining experience."</p>
+                <p>- John Doe</p>
+            </div>
+            <div class="testimonial">
+                <p>"The ambiance here is fantastic. I love coming here for both casual dinners and special occasions."</p>
+                <p>- Jane Smith</p>
+            </div>
+            <div class="testimonial">
+                <p>"The service is top-notch. The staff goes above and beyond to ensure you have a memorable dining experience."</p>
+                <p>- Michael Johnson</p>
+            </div>
+        </div>
+    </div>
+    <footer>
+        <div>
+            <h4>Quick Links</h4>
+            <ul>
+                <li><a href="#">Cafe menu</a></li>
+                <li><a href="#">Café Finder/ Café Locator</a></li>
+                <li><a href="#">Customer Care</a></li>
+            </ul>
+        </div>
+        <div>
+            <h4>Cafe Menu</h4>
+            <ul>
+                <li><a href="#">Food For Mood</a></li>
+                <li><a href="#">Hot Classic</a></li>
+                <li><a href="#">All-Time Chillers</a></li>
+                <li><a href="#">All-Day Delights</a></li>
+                <li><a href="#">Sweet Tooth</a></li>
+                <li><a href="#">X 32 Nutritional Info</a></li>
+            </ul>
+        </div>
+        <div>
+            <h4>Shop</h4>
+            <ul>
+                <li><a href="#">Coffee Mugs & Cups</a></li>
+                <li><a href="#">Coffee Makers & Wakecup</a></li>
+                <li><a href="#">Coffee Powders</a></li>
+                <li><a href="#">Gifts</a></li>
+            </ul>
+        </div>
+        <div>
+            <h4>Business</h4>
+            <ul>
+                <li><a href="#">Lease Enquiry</a></li>
+                <li><a href="#">Advertise With Us</a></li>
+                <li><a href="#">Coffee Vending Machine</a></li>
+                <li><a href="#">Outdoor Catering Service</a></li>
+            </ul>
+        </div>
+        <div>
+            <h4>About Us</h4>
+            <ul>
+                <li><a href="#">Awards</a></li>
+                <li><a href="#">Business Governance</a></li>
+                <li><a href="#">Bean to Cup</a></li>
+                <li><a href="#">News & Events</a></li>
+                <li><a href="#">Careers</a></li>
+                <li><a href="#">Contact Us</a></li>
+            </ul>
+        </div>
+        <div>
+            <h4>Locate Us</h4>
+            <!-- Embedding Google Maps -->
+            <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3671.398289369192!2d72.52584677407559!3d23.045855215461234!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x395e8353dee254bb%3A0x6909d82c9319e0a0!2sJG%20University!5e0!3m2!1sen!2sin!4v1708702530938!5m2!1sen!2sin" width="100%" height="150" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+            <div id="map" style="width: 100%; height: 100px;"></div>
+        </div>
+        <div>
+            <hr>
+            <div class="copyright" align="left">
+                
+                &copy; Chill And Vibe Cafe Resto. All Rights Reserved.
+            </div>
+        </div>
+    </footer>
+    <script>
+        // JavaScript code for search functionality
+        document.getElementById('searchButton').addEventListener('click', function() {
+            var searchTerm = document.getElementById('searchInput').value.toLowerCase();
+            switch(searchTerm) {
+                case 'home':
+                    window.location.href = 'home.html';
+                    break;
+                case 'menu':
+                    window.location.href = 'menu.html';
+                    break;
+                case 'about us':
+                    window.location.href = 'about_us.html';
+                    break;
+                case 'contact us':
+                    window.location.href = 'contact_us.html';
+                    break;
+                case 'quick links':
+                    window.location.href = 'quick_links.html';
+                    break;
+                case 'cafe menu':
+                    window.location.href = 'cafe_menu.html';
+                    break;
+                case 'café finder':
+                case 'café locator':
+                    window.location.href = 'cafe_finder.html';
+                    break;
+                case 'customer care':
+                    window.location.href = 'customer_care.html';
+                    break;
+                case 'food for mood':
+                    window.location.href = 'food_for_mood.html';
+                    break;
+                case 'hot classic':
+                    window.location.href = 'hot_classic.html';
+                    break;
+                case 'all-time chillers':
+                    window.location.href = 'all_time_chillers.html';
+                    break;
+                case 'all-day delights':
+                    window.location.href = 'all_day_delights.html';
+                    break;
+                case 'sweet tooth':
+                    window.location.href = 'sweet_tooth.html';
+                    break;
+                case 'x 32 nutritional info':
+                    window.location.href = 'x32_nutritional_info.html';
+                    break;
+                case 'shop':
+                    window.location.href = 'shop.html';
+                    break;
+                case 'coffee mugs & cups':
+                    window.location.href = 'coffee_mugs_cups.html';
+                    break;
+                case 'coffee makers & wakecup':
+                    window.location.href = 'coffee_makers_wakecup.html';
+                    break;
+                case 'coffee powders':
+                    window.location.href = 'coffee_powders.html';
+                    break;
+                case 'gifts':
+                    window.location.href = 'gifts.html';
+                    break;
+                case 'business':
+                    window.location.href = 'business.html';
+                    break;
+                case 'lease enquiry':
+                    window.location.href = 'lease_enquiry.html';
+                    break;
+                case 'advertise with us':
+                    window.location.href = 'advertise_with_us.html';
+                    break;
+                case 'coffee vending machine':
+                    window.location.href = 'coffee_vending_machine.html';
+                    break;
+                case 'outdoor catering service':
+                    window.location.href = 'outdoor_catering_service.html';
+                    break;
+                case 'about us':
+                    window.location.href = 'about_us.html';
+                    break;
+                case 'awards':
+                    window.location.href = 'awards.html';
+                    break;
+                case 'business governance':
+                    window.location.href = 'business_governance.html';
+                    break;
+                case 'bean to cup':
+                    window.location.href = 'bean_to_cup.html';
+                    break;
+                case 'news & events':
+                    window.location.href = 'news_events.html';
+                    break;
+                case 'careers':
+                    window.location.href = 'careers.html';
+                    break;
+                case 'contact us':
+                    window.location.href = 'contact_us.html';
+                    break;
+                default:
+                    alert('No matching page found for your search term.');
+            }
+        });
+    </script>
+    
+</body>
+</html>

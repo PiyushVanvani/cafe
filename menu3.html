@@ -1,0 +1,734 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Menu - Chill & Vibe Cafe Resto</title>
+    <style>
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background-color: #f8f9fa;
+        }
+        header {
+            background-color: #66cc99;
+            color: #fff;
+            padding: 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .logo img {
+            width: 100px;
+        }
+        .title h1, .title h2 {
+            margin: 0;
+        }
+        .search-bar input[type="text"] {
+            background-color: #ffcccc;
+            border: 1px solid #cccccc;
+            padding: 8px;
+        }
+        .search-bar button {
+            background-color: #66cc99;
+            border: none;
+            color: white;
+            padding: 10px 20px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+        .search-bar button:hover {
+            animation: bounce 0.5s ease;
+        }
+        @keyframes bounce {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-10px); }
+        }
+        .cta {
+            margin-right: 20px;
+        }
+        .cta .btn {
+            background-color: #66cc99;
+            color: #fff;
+            padding: 8px 16px;
+            border: none;
+            border-radius: 5px;
+            text-decoration: none;
+            font-weight: bold;
+            transition: background-color 0.3s ease;
+        }
+        .cta .btn:hover {
+            background-color: #55aabb;
+        }
+        nav {
+            display: flex;
+            justify-content: center;
+            background-color: #55aabb;
+            padding: 10px;
+        }
+        nav a {
+            color: #fff;
+            text-decoration: none;
+            padding: 10px;
+            margin: 0 10px;
+            text-transform: uppercase;
+            font-weight: bold;
+        }
+        nav a:hover {
+            background-color: #77bbdd;
+        }
+        a {
+            color: #fff;
+            text-decoration: none;
+            padding: 10px;
+            margin: 0 10px;
+            text-transform: uppercase;
+            font-weight: bold;
+        }
+        a:hover {
+            background-color: #77bbdd;
+        }
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #fff;
+            border-radius: 10px;
+            box-shadow: 0 0 20px rgba(0,0,0,0.1);
+            margin-top: 20px;
+        }
+        .category {
+            margin-bottom: 40px;
+        }
+        .category h2 {
+            color: #333;
+            border-bottom: 2px solid #333;
+            padding-bottom: 10px;
+        }
+        .menu-item {
+            background-color: #f1f1f1;
+            border-radius: 5px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+            margin-bottom: 20px;
+            padding: 20px;
+        }
+        .menu-item img {
+            max-width: 100%;
+            border-radius: 5px;
+            margin-bottom: 10px;
+        }
+        .price {
+            font-weight: bold;
+        }
+        .slideshow-container {
+            position: relative;
+            max-width: 100%;
+            margin-bottom: 20px;
+        }
+        .mySlides {
+            display: none;
+        }
+        .prev, .next {
+            cursor: pointer;
+            position: absolute;
+            top: 50%;
+            width: auto;
+            padding: 16px;
+            margin-top: -22px;
+            color: white;
+            font-weight: bold;
+            font-size: 18px;
+            transition: 0.6s ease;
+            border-radius: 0 3px 3px 0;
+            user-select: none;
+            background-color: rgba(0, 0, 0, 0.5);
+        }
+        .next {
+            right: 0;
+            border-radius: 3px 0 0 3px;
+        }
+        .prev:hover, .next:hover {
+            background-color: rgba(0, 0, 0, 0.8);
+        }
+        .text {
+            color: #f2f2f2;
+            font-size: 15px;
+            padding: 8px 12px;
+            position: absolute;
+            bottom: 8px;
+            width: 100%;
+            text-align: center;
+        }
+        .dot-container {
+            text-align: center;
+            padding: 20px 0;
+        }
+        .dot {
+            cursor: pointer;
+            height: 15px;
+            width: 15px;
+            margin: 0 2px;
+            background-color: #bbb;
+            border-radius: 50%;
+            display: inline-block;
+            transition: background-color 0.6s ease;
+        }
+        .active, .dot:hover {
+            background-color: #717171;
+        }
+        .review {
+            background-color: #f1f1f1;
+            padding: 20px;
+            margin-bottom: 20px;
+            border-radius: 5px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+        }
+        form {
+            background-color: #f1f1f1;
+            padding: 20px;
+            margin-bottom: 20px;
+            border-radius: 5px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+        }
+        form label {
+            font-weight: bold;
+            color: #333;
+        }
+        form input[type="text"],
+        form input[type="email"],
+        form input[type="tel"],
+        form input[type="date"],
+        form input[type="time"],
+        form input[type="number"],
+        form input[type="submit"] {
+            width: 100%;
+            padding: 10px;
+            margin-top: 5px;
+            margin-bottom: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+        form input[type="submit"] {
+            background-color: #343a40;
+            color: #fff;
+            border: none;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+        form input[type="submit"]:hover {
+            background-color: #555;
+        }
+        footer {
+            background-color: #66cc99; /* Light green footer background */
+            color: #fff;
+            text-align: center;
+            padding: 20px; /* Increased footer padding */
+            position: relative;
+            margin-top: 40px; /* Added margin-top to create space between footer and content */
+            font-size: 14px;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 20px;
+            z-index: 1;    
+        }
+        footer div {
+            flex: 1;
+            min-width: 200px;
+            max-width: 300px;
+        }
+        footer h4 {
+            font-size: 16px;
+            margin-bottom: 10px;
+        }
+        footer ul {
+            list-style-type: none;
+            padding: 0;
+            margin: 0;
+            text-align: left;
+            font-size: 10.60px;
+        }
+        footer ul li {
+            margin-bottom: 5px;
+        }
+        /* Horizontal line at top and bottom of footer */
+        footer:before,
+        footer:after {
+            content: '';
+            display: block;
+            height: 1px;
+            width: 90%;
+            max-width: 800px;
+            margin: 0 auto;
+            background-color: #fff; /* White line color */
+            position: absolute;
+            left: 0;
+            right: 0;
+        }
+        footer:before {
+            top: 0;
+        }
+        footer:after {
+            bottom: 0;
+        }
+        footer {
+            background-color: #66cc99; /* Light green footer background */
+            color: #fff;
+            text-align: center;
+            padding: 20px; /* Increased footer padding */
+            position: relative;
+            margin-top: 40px; /* Added margin-top to create space between footer and content */
+            font-size: 14px;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 20px;
+            z-index: 1;    
+        }
+        footer div {
+            flex: 1;
+            min-width: 200px;
+            max-width: 300px;
+        }
+        footer h4 {
+            font-size: 16px;
+            margin-bottom: 10px;
+        }
+        footer ul {
+            list-style-type: none;
+            padding: 0;
+            margin: 0;
+            text-align: left;
+            font-size: 10.60px;
+        }
+        footer ul li {
+            margin-bottom: 5px;
+        }
+        /* Horizontal line at top and bottom of footer */
+        footer:before,
+        footer:after {
+            content: '';
+            display: block;
+            height: 1px;
+            width: 90%;
+            margin: 0 auto;
+            background-color: #fff; /* White horizontal lines */
+            margin-top: 10px;
+            margin-bottom: 10px;
+        }
+        .copyright {
+            margin-top: 20px;
+            font-size: 12px;
+            grid-column: 1 / -1;
+        }
+
+        .additional-section {
+            padding: 20px;
+            background-color: #f1f1f1;
+            border-radius: 5px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+            margin-bottom: 20px;
+        }
+        .additional-section h4 {
+            font-size: 16px;
+            margin-bottom: 10px;
+            color: #333; /* Dark gray heading */
+        }
+        .additional-section p {
+            margin-bottom: 10px;
+        }
+        .additional-section ul {
+            list-style-type: none;
+            padding: 0;
+            margin: 0;
+        }
+        .additional-section ul li {
+            margin-bottom: 5px;
+            color: #333; /* Dark gray text */
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="logo">
+            <img src="logo.png" alt="Chill & Vibe Logo">
+        </div>
+        <div class="title">
+            <h1 style="font-size: 24px; margin-bottom: 5px;">Menu</h1>
+            <h2 style="font-size: 18px;">&nbsp;&nbsp;Chill And Vibe Cafe Resto!</h2>
+        </div>
+        
+        <div class="search-bar">
+            <input id="searchInput" type="text" placeholder="Search...">
+            <button id="searchButton" type="button">Search</button>
+        </div>
+        <div class="cta">
+            <a href="#" class="btn">ORDER NOW</a>
+        </div>
+    </header>
+    <!-- Navigation -->
+    <nav>
+        <a href="cafe.html">Home</a>
+        <a href="#">Menu</a>
+        <a href="#">About Us</a>
+        <a href="#">Contact Us</a>
+    </nav>
+
+    <!-- Content -->
+    <div class="container">
+        <!-- Header from menu.html -->
+        <header>
+            <h1>Our Menu</h1>
+            <p>Discover Our Delicious Menu</p>
+        </header>
+
+        <!-- Category 1 from menu.html -->
+        <div class="category">
+            <h2>Breakfast</h2>
+            <!-- Menu Items -->
+            <div class="menu-item">
+                <img src="images/breakfast1.jpg" alt="Breakfast">
+                <h3>Eggs & Toast</h3>
+                <p class="price">$6.99</p>
+                <p>Freshly cooked eggs served with crispy toast.</p>
+            </div>
+            <!-- Additional menu items can be added here -->
+        </div>
+
+        <!-- Category 2 from menu.html -->
+        <div class="category">
+            <h2>Lunch</h2>
+            <!-- Menu Items -->
+            <div class="menu-item">
+                <img src="images/lunch1.jpg" alt="Lunch">
+                <h3>Grilled Chicken Salad</h3>
+                <p class="price">$8.99</p>
+                <p>Healthy salad with grilled chicken breast.</p>
+            </div>
+            <!-- Additional menu items can be added here -->
+        </div>
+
+        <!-- Slideshow from menu.html -->
+        <div class="slideshow-container">
+            <div class="mySlides fade">
+                <img src="images/slide1.jpg" style="width:100%">
+            </div>
+            <!-- Additional slides can be added here -->
+            <a class="prev" onclick="plusSlides(-1)">&#10094;</a>
+            <a class="next" onclick="plusSlides(1)">&#10095;</a>
+        </div>
+        <div style="text-align:center">
+            <span class="dot"></span>
+            <!-- Additional dots can be added here -->
+        </div>
+
+        <!-- Reviews from contact.html -->
+        <div class="review">
+            <h2>Customer Reviews</h2>
+            <p>Here's what our customers are saying...</p>
+            <!-- Individual reviews can be added here -->
+        </div>
+    <div class="additional-section">
+        <!-- Paste the removed content here -->
+        <h4>Location</h4>
+        <p>123 Street Name</p>
+        <p>City, State, 12345</p>
+
+        <h4>Opening Hours</h4>
+        <ul>
+            <li>Monday - Friday: 8am - 10pm</li>
+            <li>Saturday: 9am - 11pm</li>
+            <li>Sunday: 9am - 9pm</li>
+        </ul>
+
+        <h4>Contact Us</h4>
+        <p>Phone: (123) 456-7890</p>
+        <p>Email: info@example.com</p>
+    </div>
+    <!-- Reservation Form from contact.html -->
+        <div class="container">
+            <!-- Reservation Form -->
+            <h2>Make a Reservation</h2>
+            <form id="reservation-form">
+                <label for="name">Name:</label><br>
+                <input type="text" id="name" name="name" required><br>
+                <label for="email">Email:</label><br>
+                <input type="email" id="email" name="email" required><br>
+                <label for="phone">Phone:</label><br>
+                <input type="tel" id="phone" name="phone" required><br>
+                <label for="date">Date:</label><br>
+                <input type="date" id="date" name="date" required><br>
+                <label for="time">Time:</label><br>
+                <input type="time" id="time" name="time" required><br>
+                <label for="guests">Number of Guests:</label><br>
+                <input type="number" id="guests" name="guests" min="1" required><br><br>
+                <input type="submit" value="Submit">
+            </form>
+            <!-- Thank you message -->
+            <div id="thank-you-message" style="display: none;">
+                Thank you for your reservation!
+            </div>
+        </div>
+        
+        
+    </div>
+    <script src="https://cdn.emailjs.com/dist/email.min.js"></script>
+    <script>
+    // Initialize EmailJS with your user ID
+    emailjs.init("P1zLcYeNmsYfSeo_X");
+
+    // Function to handle form submission
+    function handleFormSubmit(event) {
+        event.preventDefault(); // Prevent default form submission
+
+        // Get form data
+        var form = document.getElementById("reservation-form");
+        var formData = {
+            to_name: "Your Name", // Change this to the recipient's name
+            from_name: form.name.value,
+            message: "Reservation details:\n" +
+                "Date: " + form.date.value + "\n" +
+                "Time: " + form.time.value + "\n" +
+                "Number of Guests: " + form.guests.value
+        };
+
+        // Send the email
+        emailjs.send("service_r96gjkk", "template_wnx3sdd", formData)
+            .then(function(response) {
+                console.log("Email sent successfully", response);
+                // Display the thank you message
+                var thankYouMessage = document.getElementById("thank-you-message");
+                if (thankYouMessage) {
+                    thankYouMessage.style.display = "block";
+                }
+
+                // Optionally, reset the form fields
+                form.reset();
+            })
+            .catch(function(error) {
+                console.error("Email sending failed", error);
+                // Handle errors here
+            });
+            // Send an auto-reply message to the user
+    var autoReplyData = {
+        to_name: form.name.value, // Recipient's name
+        from_name: "Rest & Flex Cafe Resto", // Your restaurant's name or email
+        message: "Thank you for your reservation! We have received your request. Here are the details:\n" +
+            "Date: " + form.date.value + "\n" +
+            "Time: " + form.time.value + "\n" +
+            "Number of Guests: " + form.guests.value
+    };
+
+    // Send the auto-reply message
+    emailjs.send("service_r96gjkk", "auto_reply_template_id", autoReplyData)
+        .then(function(response) {
+            console.log("Auto-reply sent successfully", response);
+        })
+        .catch(function(error) {
+            console.error("Auto-reply sending failed", error);
+            // Handle errors here
+        });
+    }
+
+
+    // Attach event listener to the form's submit event
+    document.addEventListener("DOMContentLoaded", function() {
+        var form = document.getElementById("reservation-form");
+        if (form) {
+            form.addEventListener("submit", handleFormSubmit);
+        }
+    });
+    </script>
+    <script>
+        let slideIndex = 0;
+        showSlides();
+
+        function showSlides() {
+            let i;
+            let slides = document.getElementsByClassName("mySlides");
+            let dots = document.getElementsByClassName("dot");
+            for (i = 0; i < slides.length; i++) {
+                slides[i].style.display = "none";
+            }
+            slideIndex++;
+            if (slideIndex > slides.length) {slideIndex = 1}
+            for (i = 0; i < dots.length; i++) {
+                dots[i].className = dots[i].className.replace(" active", "");
+            }
+            slides[slideIndex-1].style.display = "block";
+            dots[slideIndex-1].className += " active";
+            setTimeout(showSlides, 2000); // Change image every 2 seconds
+        }
+        
+    
+        // JavaScript code for search functionality
+        document.getElementById('searchButton').addEventListener('click', function() {
+            var searchTerm = document.getElementById('searchInput').value.toLowerCase();
+            switch(searchTerm) {
+                case 'home':
+                    window.location.href = 'home.html';
+                    break;
+                case 'menu':
+                    window.location.href = 'menu.html';
+                    break;
+                case 'about us':
+                    window.location.href = 'about_us.html';
+                    break;
+                case 'contact us':
+                    window.location.href = 'contact_us.html';
+                    break;
+                case 'quick links':
+                    window.location.href = 'quick_links.html';
+                    break;
+                case 'cafe menu':
+                    window.location.href = 'cafe_menu.html';
+                    break;
+                case 'café finder':
+                case 'café locator':
+                    window.location.href = 'cafe_finder.html';
+                    break;
+                case 'customer care':
+                    window.location.href = 'customer_care.html';
+                    break;
+                case 'food for mood':
+                    window.location.href = 'food_for_mood.html';
+                    break;
+                case 'hot classic':
+                    window.location.href = 'hot_classic.html';
+                    break;
+                case 'all-time chillers':
+                    window.location.href = 'all_time_chillers.html';
+                    break;
+                case 'all-day delights':
+                    window.location.href = 'all_day_delights.html';
+                    break;
+                case 'sweet tooth':
+                    window.location.href = 'sweet_tooth.html';
+                    break;
+                case 'x 32 nutritional info':
+                    window.location.href = 'x32_nutritional_info.html';
+                    break;
+                case 'shop':
+                    window.location.href = 'shop.html';
+                    break;
+                case 'coffee mugs & cups':
+                    window.location.href = 'coffee_mugs_cups.html';
+                    break;
+                case 'coffee makers & wakecup':
+                    window.location.href = 'coffee_makers_wakecup.html';
+                    break;
+                case 'coffee powders':
+                    window.location.href = 'coffee_powders.html';
+                    break;
+                case 'gifts':
+                    window.location.href = 'gifts.html';
+                    break;
+                case 'business':
+                    window.location.href = 'business.html';
+                    break;
+                case 'lease enquiry':
+                    window.location.href = 'lease_enquiry.html';
+                    break;
+                case 'advertise with us':
+                    window.location.href = 'advertise_with_us.html';
+                    break;
+                case 'coffee vending machine':
+                    window.location.href = 'coffee_vending_machine.html';
+                    break;
+                case 'outdoor catering service':
+                    window.location.href = 'outdoor_catering_service.html';
+                    break;
+                case 'about us':
+                    window.location.href = 'about_us.html';
+                    break;
+                case 'awards':
+                    window.location.href = 'awards.html';
+                    break;
+                case 'business governance':
+                    window.location.href = 'business_governance.html';
+                    break;
+                case 'bean to cup':
+                    window.location.href = 'bean_to_cup.html';
+                    break;
+                case 'news & events':
+                    window.location.href = 'news_events.html';
+                    break;
+                case 'careers':
+                    window.location.href = 'careers.html';
+                    break;
+                case 'contact us':
+                    window.location.href = 'contact_us.html';
+                    break;
+                default:
+                    alert('No matching page found for your search term.');
+            }
+        });
+    </script>
+    
+    
+    <footer>
+        <div>
+            <h4>Quick Links</h4>
+            <ul>
+                <li><a href="#">Cafe menu</a></li>
+                <li><a href="#">Café Finder/ Café Locator</a></li>
+                <li><a href="#">Customer Care</a></li>
+            </ul>
+        </div>
+        <div>
+            <h4>Cafe Menu</h4>
+            <ul>
+                <li><a href="#">Food For Mood</a></li>
+                <li><a href="#">Hot Classic</a></li>
+                <li><a href="#">All-Time Chillers</a></li>
+                <li><a href="#">All-Day Delights</a></li>
+                <li><a href="#">Sweet Tooth</a></li>
+                <li><a href="#">X 32 Nutritional Info</a></li>
+            </ul>
+        </div>
+        <div>
+            <h4>Shop</h4>
+            <ul>
+                <li><a href="#">Coffee Mugs & Cups</a></li>
+                <li><a href="#">Coffee Makers & Wakecup</a></li>
+                <li><a href="#">Coffee Powders</a></li>
+                <li><a href="#">Gifts</a></li>
+            </ul>
+        </div>
+        <div>
+            <h4>Business</h4>
+            <ul>
+                <li><a href="#">Lease Enquiry</a></li>
+                <li><a href="#">Advertise With Us</a></li>
+                <li><a href="#">Coffee Vending Machine</a></li>
+                <li><a href="#">Outdoor Catering Service</a></li>
+            </ul>
+        </div>
+        <div>
+            <h4>About Us</h4>
+            <ul>
+                <li><a href="#">Awards</a></li>
+                <li><a href="#">Business Governance</a></li>
+                <li><a href="#">Bean to Cup</a></li>
+                <li><a href="#">News & Events</a></li>
+                <li><a href="#">Careers</a></li>
+                <li><a href="#">Contact Us</a></li>
+            </ul>
+        </div>
+        <div>
+            <h4>Locate Us</h4>
+            <!-- Embedding Google Maps -->
+            <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3671.398289369192!2d72.52584677407559!3d23.045855215461234!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x395e8353dee254bb%3A0x6909d82c9319e0a0!2sJG%20University!5e0!3m2!1sen!2sin!4v1708702530938!5m2!1sen!2sin" width="100%" height="150" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+            <div id="map" style="width: 100%; height: 100px;"></div>
+        </div>
+        <div>
+            <hr>
+            <div class="copyright" align="left">
+                
+                &copy; Chill And Vibe Cafe Resto. All Rights Reserved.
+            </div>
+        </div>
+    </footer>
+
+</body>
+</html>
